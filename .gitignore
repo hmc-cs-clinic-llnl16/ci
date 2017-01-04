@@ -1,0 +1,5 @@
+*.pyc
+db_repository/
+venv/
+regr/
+*.db

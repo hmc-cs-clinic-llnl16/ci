@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}List of tasks{% endblock %}
+{% block content %}
+<h1>Tasks</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Task ID</th>
+      <th>Application</th>
+      <th>Tag</th>
+      <th>Compiler</th>
+      <th>Number of Trials</th>
+      <th>Problem Size</th>
+      <th>Status</th>
+      <th>Completed</th>
+      <th>Timestamp</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for task in tasks %}
+      <tr>
+        <td><a href="{{ url_for('regression_status', task_id=task.id) }}">{{ task.id }}</a></td>
+        <td><a href="{{ url_for('run_regression', application=task.application) }}">{{ task.application }}</a></td>
+        <td>{{ task.tag }}</td>
+        <td>{{ task.compiler }}</td>
+        <td>{{ task.num_trials }}</td>
+        <td>{{ task.problem_size }}</td>
+        <td>{{ task.status }}</td>
+        <td>{{ task.complete }}</td>
+        <td>{{ task.timestamp }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

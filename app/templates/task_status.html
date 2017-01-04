@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %} Task Status for Task {{ task.id }} {% endblock %}
+{% block content %}
+  <h1>Task Status for Task #{{ task.id }}</h1>
+  <h2>Regression testing for {{ task.application }}</h2>
+  <p>Using tag {{ task.tag }} for the test, on the {{ task.compiler }} compiler.</p>
+  <p>Task is being run {{ task.num_trials }} times, on a problem size of {{ task.problem_size }}.</p>
+  <p>The task is currently <b>{{ task.status }}</b></p>
+  {% if task.complete %}
+    <p>The task was completed at {{ task.timestamp }}.</p>
+  {% else %}
+    <p>The task was queued at {{ task.timestamp }}.</p>
+  {% endif %}
+{% endblock %}

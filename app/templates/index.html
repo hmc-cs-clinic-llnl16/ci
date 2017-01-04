@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}LLNL Regression Testing{% endblock %}
+{% block content %}
+  <h1>Regression Testing</h1>
+  <hr>
+  <p>
+    Welcome to regression testing for LLNL's <a href="https://github.com/LLNL/RAJA">RAJA</a> project.
+    This provides regression testing for the RAJA framework as well as a number of example application
+    including <a href="https://github.com/LLNL/RAJA-examples">LULESH-v1.0, KRIPKE-v1.1, LULESH-v2.0, and LASSEN-v1.1</a>.
+   </p>
+   <h2>Available applications</h2>
+   <p>Submit a regression request for any of the following applications</p>
+   <ul>
+     {% for id, safe_url in valid_applications %}
+       <li><a href="{{ url_for('run_regression', application=safe_url) }}">{{ id }}</a></li>
+     {% endfor %}
+   </ul>
+{% endblock %}

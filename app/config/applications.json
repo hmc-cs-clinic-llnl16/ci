@@ -1,0 +1,37 @@
+[
+  {
+    "id": "Matrix Multiplication",
+    "repo_id": "Sample Applications",
+    "path": "mmult"
+  },
+  {
+    "id": "Lulesh-v1.0",
+    "repo_id": "RAJA Examples",
+    "path": "LULESH-v1.0"
+  },
+  {
+    "id": "Lulesh-v2.0",
+    "repo_id": "RAJA Examples",
+    "path": "LULESH-v2.0"
+  },
+  {
+    "id": "Kripke-v1.1",
+    "repo_id": "RAJA Examples",
+    "path": "KRIPKE-v1.1"
+  },
+  {
+    "id": "Lassen-v1.0",
+    "repo_id": "RAJA Examples",
+    "path": "lassen-v1.0"
+  },
+  {
+    "id": "1D FFT",
+    "repo_id": "Sample Applications",
+    "path": "fft"
+  },
+  {
+    "id": "2D FFT",
+    "repo_id": "Sample Applications",
+    "path": "fft2d"
+  }
+]

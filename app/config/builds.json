@@ -1,0 +1,9 @@
+[
+  {
+    "application_id": "Matrix Multiplication",
+    "repository_id": "Sample Applications",
+    "compiler_id": "gcc-4.9.3",
+    "clone_command": "git clone {url}",
+    "build_command": "cd {folder} && mkdir build && cd build && cmake .. -DCMAKE_INSTALL_PREFIX=tpl -DRAJA_ENABLE_NESTED"
+  }
+]

@@ -1,0 +1,12 @@
+[
+    {
+      "id": "RAJA Examples",
+      "url": "https://github.com/LLNL/RAJA-examples.git",
+      "git": true
+    },
+    {
+      "id": "Sample Applications",
+      "url": "https://github.com/hmc-cs-clinic-llnl16/sample_applications.git",
+      "git": true
+    }
+]

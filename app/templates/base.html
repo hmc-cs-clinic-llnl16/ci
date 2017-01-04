@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body>
+    <span>
+      <a href="{{ url_for('index') }}">Home</a>
+      {% for id, safe_url in valid_applications %}
+        | <a href="{{ url_for('run_regression', application=safe_url) }}">{{ id }}</a>
+      {% endfor %}
+      | <a href="{{ url_for('tasklist') }}">Task List</a>
+    </span>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li>{{ message }} </li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Regression for {{ app_name }}{% endblock %}
+{% block content %}
+  <h1>Run Regression for <a href="{{ app_url }}">{{ app_name }}</a></h1>
+  <hr />
+  <form action="" method="post" name="run_regression">
+    {{ form.hidden_tag() }}
+    {% for attribute in form.data %}
+      {% with value = getattr(form, attribute) %}
+        <p>{{ value.label }}: {{ value }}</p>
+        {% if value.errors %}
+          {% for error in value.errors %}
+            <span class="error" style="color: red;">[{{ error }}]</span>
+          {% endfor %}<br/>
+        {% endif %}
+      {% endwith %}
+    {% endfor %}
+    <p><input type="submit" value="Add to Queue"></p>
+  </form>
+{% endblock %}
