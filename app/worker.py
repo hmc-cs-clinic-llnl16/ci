@@ -30,7 +30,9 @@ def enqueue_task(data):
     return task.id
 
 @app.before_first_request
-def start_first_request():
+def start_task_queue():
     global process
     process = multiprocessing.Process(target=process_queue, args=(queue,))
     process.start()
+
+    

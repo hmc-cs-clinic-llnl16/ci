@@ -5,12 +5,13 @@ from flask_wtf import FlaskForm
 from wtforms import SelectField
 from urllib import quote_plus
 
+
 valid_applications = []
 
 @app.before_first_request
 def get_valid_applications():
     global valid_applications
-    valid_applications = [(application.id, quote_plus(application.id)) for application in models.Application.query.all()]
+    valid_applications = [(application.id, quote_plus(application.id)) for appliction in models.Application.query.all()]
 
 @app.route('/')
 @app.route('/index')
@@ -19,7 +20,7 @@ def index():
 
 @app.route('/webhook/<repository>', methods=['POST'])
 def repository_webhook(repository):
-    return "TEST, {}".format(repository)
+    pass
 
 def template_variables_for(application):
     for app, url in valid_applications:
@@ -35,10 +36,10 @@ def template_variables_for(application):
             'Compiler', choices=[(compiler.id, compiler.id) for compiler in models.Compiler.query.all()]
         )
         num_trials = SelectField(
-            'Number of Trials', choices=[('1', '1'), ('5', '5'), ('10', '10'), ('20', '20')]
+            'Number of Trials', choices=[(str(i), str(i)) for i in [1, 5, 10, 20]]
         )
         size = SelectField(
-            'Problem Size', choices=[('100', '100'), ('1000', '1000'), ('10000', '10000')]
+            'Problem Size', choices=[(str(i), str(i)) for i in [100, 500, 1000, 5000, 10000]]
         )
 
     repo_id = models.Application.query.get(application).repo_id
@@ -55,17 +56,18 @@ def run_regression(application):
     template, form, variables = template_variables_for(application)
     if not form:
         return redirect(url_for('index'))
-    if form.validate_on_submit():
+    elif form.validate_on_submit():
         data = form.data
         data.update({'application': application})
         task_id = worker.enqueue_task(data)
         return redirect(url_for('regression_status', task_id=task_id))
-    return render_template(template, form=form, getattr=getattr, valid_applications=valid_applications, **variables)
+    else:
+        return render_template(template, form=form, getattr=getattr, valid_applications=valid_applications, **variables)
 
 @app.route('/regression_status/<int:task_id>')
 def regression_status(task_id):
     task = models.Task.query.get(task_id)
-    return render_template("task_status.html", task=task, valid_applications=valid_applications)
+    return render_template("task_status.html", task=task_id, valid_applications=valid_applications)
 
 @app.route('/tasklist')
 def tasklist():
